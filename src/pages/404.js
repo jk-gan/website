@@ -6,7 +6,7 @@ import SEO from "../components/seo"
 
 const NotFoundPage = ({ data, location }) => {
   const siteTitle = data.site.siteMetadata.title
-  const ogImage = `${location.origin}${data.file.publicURL}`
+  const ogImage = `https://jkgan.com${data.file.publicURL}`
 
   return (
     <Layout location={location} title={siteTitle}>

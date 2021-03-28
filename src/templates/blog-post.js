@@ -8,7 +8,7 @@ const BlogPostTemplate = ({ data, location }) => {
   const post = data.markdownRemark
   const siteTitle = data.site.siteMetadata?.title || `Title`
   const { previous, next } = data
-  const ogImage = `${location.origin}${data.file.publicURL}`
+  const ogImage = `https://jkgan.com${data.file.publicURL}`
 
   return (
     <Layout location={location} title={siteTitle}>
@@ -29,19 +29,20 @@ const BlogPostTemplate = ({ data, location }) => {
                 {post.frontmatter.title}
               </h1>
               {/* <h3 className="opacity-80 text-xl text-blueGray-500 font-normal mb-3 text-center">{subtitle}</h3> */}
-              {/* <ul className="flex flex-wrap justify-center">
-                {tags.map(tag => {
+              <ul className="flex flex-wrap justify-center">
+                {post.frontmatter.tags.map(tag => {
                   return (
                     <li key={tag} className="mb-2">
-                      <Link href={`/tags/${tag}`}>
-                        <a className="text-sm mr-2 py-1 px-2 rounded-xl bg-blueGray-100 hover:bg-blueGray-200">
-                          #{tag}
-                        </a>
+                      <Link
+                        to={`/tags/${tag}`}
+                        className="text-sm mr-2 py-1 px-2 rounded-xl bg-blueGray-100 hover:bg-blueGray-200"
+                      >
+                        #{tag}
                       </Link>
                     </li>
                   )
                 })}
-              </ul> */}
+              </ul>
               <p className="opacity-80 text-sm text-blueGray-400 text-center">
                 {/* {dayjs(date).format("MMMM D, YYYY")} */}
                 {post.frontmatter.date}
