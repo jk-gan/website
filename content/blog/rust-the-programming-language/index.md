@@ -2,7 +2,7 @@
 title: "Rust: The Programming Language"
 subtitle: "A language empowering everyone to build reliable and efficient software."
 slug: rust-the-programming-language
-image: "/rust-the-programming-language/logo.jpeg"
+image: "rust-the-programming-language/logo.jpeg"
 date: "2019-08-18"
 tags: ["rust", "introduction"]
 ---
