@@ -14,6 +14,7 @@ const BlogPostTemplate = ({ data, location }) => {
       <SEO
         title={post.frontmatter.title}
         description={post.frontmatter.description || post.excerpt}
+        ogImage={data.file.publicURL}
       />
       <article
         className="blog-post"
@@ -94,6 +95,7 @@ export const pageQuery = graphql`
     $id: String!
     $previousPostId: String
     $nextPostId: String
+    $image: String
   ) {
     site {
       siteMetadata {
@@ -108,7 +110,12 @@ export const pageQuery = graphql`
         title
         date(formatString: "MMMM DD, YYYY")
         description
+        tags
+        image
       }
+    }
+    file(relativePath: { eq: $image }) {
+      publicURL
     }
     previous: markdownRemark(id: { eq: $previousPostId }) {
       fields {

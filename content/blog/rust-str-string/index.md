@@ -2,7 +2,7 @@
 title: "Rust's String and str"
 subtitle: "This is one of the top Rust question on Stack Overflow"
 slug: rust-str-string
-image: "/rust-str-string/bg.jpg" # Photo by Steve Johnson on Unsplash
+image: "rust-str-string/bg.jpg" # Photo by Steve Johnson on Unsplash
 tags: ["rust"]
 date: "2021-03-07"
 ---
