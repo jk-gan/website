@@ -1,3 +1,22 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer utilities {
+  .header {
+    box-shadow: rgba(0, 0, 0, 0.06) 0px 1px 0px;
+  }
+
+  .bg-frosted-glass {
+    background-color: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(20px) saturate(180%);
+  }
+
+  .link {
+    @apply border-b-2 border-cyan-400;
+  }
+
+  .link:hover {
+    @apply text-cyan-400;
+  }
+}
