@@ -10,7 +10,7 @@ const BlogIndex = ({ data, location }) => {
 
   return (
     <Layout location={location} title={siteTitle}>
-      <SEO title="Writings" />
+      <SEO title="Writings" ogImage={data.file.publicURL} />
       <div className="flex container mx-auto mt-16 w-11/12 2xl:w-5/12 xl:w-6/12 lg:w-8/12 md:w-10/12">
         <div className="divide-y-2 w-full">
           <div>
@@ -23,23 +23,20 @@ const BlogIndex = ({ data, location }) => {
 
                 return (
                   <li className="mb-10" key={post.id}>
-                    <Link to={`/blog${post.fields.slug}`}>
-                      <a className="text-2xl mb-2 font-semibold hover:text-cyan-400">
-                        {title}
-                      </a>
+                    <Link
+                      to={`/blog${post.fields.slug}`}
+                      className="text-2xl mb-2 font-semibold hover:text-cyan-400"
+                    >
+                      {title}
                     </Link>
-                    <p className="text-base text-blueGray-500 mb-2">
-                      {/* {post.subtitle || "..."} */}
-                      <section>
-                        <p
-                          dangerouslySetInnerHTML={{
-                            __html:
-                              post.frontmatter.description || post.excerpt,
-                          }}
-                          itemProp="description"
-                        />
-                      </section>
-                    </p>
+                    <section className="text-base text-blueGray-500 mb-2">
+                      <p
+                        dangerouslySetInnerHTML={{
+                          __html: post.frontmatter.description || post.excerpt,
+                        }}
+                        itemProp="description"
+                      />
+                    </section>
                     {/* <ul className="flex flex-wrap mb-2">
                       {post.tags.map(tag => {
                         return (
@@ -76,6 +73,9 @@ export const pageQuery = graphql`
       siteMetadata {
         title
       }
+    }
+    file(relativePath: { eq: "bg.jpeg" }) {
+      publicURL
     }
     allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
       nodes {
