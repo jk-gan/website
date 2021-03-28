@@ -80,7 +80,14 @@ const SEO = ({ description, lang, meta, title, ogImage }) => {
           content: metaDescription,
         },
       ].concat(meta)}
-    />
+    >
+      <script
+        async
+        defer
+        data-domain="jkgan.com"
+        src="https://plausible.io/js/plausible.js"
+      ></script>
+    </Helmet>
   )
 }
 
