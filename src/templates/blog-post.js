@@ -8,13 +8,14 @@ const BlogPostTemplate = ({ data, location }) => {
   const post = data.markdownRemark
   const siteTitle = data.site.siteMetadata?.title || `Title`
   const { previous, next } = data
+  const ogImage = `${location.origin}${data.file.publicURL}`
 
   return (
     <Layout location={location} title={siteTitle}>
       <SEO
         title={post.frontmatter.title}
         description={post.frontmatter.description || post.excerpt}
-        ogImage={data.file.publicURL}
+        ogImage={ogImage}
       />
       <article
         className="blog-post"

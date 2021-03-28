@@ -6,10 +6,11 @@ import SEO from "../components/seo"
 
 const Home = ({ data, location }) => {
   const siteTitle = data.site.siteMetadata?.title || `Title`
+  const ogImage = `${location.origin}${data.file.publicURL}`
 
   return (
     <Layout location={location} title={siteTitle}>
-      <SEO title="Home" ogImage={data.file.publicURL} />
+      <SEO title="Home" ogImage={ogImage} />
       <div className="flex container mx-auto mt-16 w-11/12 2xl:w-5/12 xl:w-6/12 lg:w-8/12 md:w-10/12">
         <div>
           <h1 className="text-left font-bold text-3xl mb-10">

@@ -7,10 +7,11 @@ import SEO from "../../components/seo"
 const BlogIndex = ({ data, location }) => {
   const siteTitle = data.site.siteMetadata?.title || `Title`
   const posts = data.allMarkdownRemark.nodes
+  const ogImage = `${location.origin}${data.file.publicURL}`
 
   return (
     <Layout location={location} title={siteTitle}>
-      <SEO title="Writings" ogImage={data.file.publicURL} />
+      <SEO title="Writings" ogImage={ogImage} />
       <div className="flex container mx-auto mt-16 w-11/12 2xl:w-5/12 xl:w-6/12 lg:w-8/12 md:w-10/12">
         <div className="divide-y-2 w-full">
           <div>
