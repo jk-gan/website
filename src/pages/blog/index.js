@@ -22,8 +22,8 @@ const BlogIndex = ({ data, location }) => {
                 const title = post.frontmatter.title || post.fields.slug
 
                 return (
-                  <li className="mb-10" key={post.fields.slug}>
-                    <Link href={`/blog/${post.fields.slug}`}>
+                  <li className="mb-10" key={post.id}>
+                    <Link to={`/blog${post.fields.slug}`}>
                       <a className="text-2xl mb-2 font-semibold hover:text-cyan-400">
                         {title}
                       </a>
@@ -79,6 +79,7 @@ export const pageQuery = graphql`
     }
     allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
       nodes {
+        id
         excerpt
         fields {
           slug
