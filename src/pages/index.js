@@ -33,13 +33,13 @@ const Home = ({ data, location }) => {
             reading{" "}
             <a
               className="link"
-              href="https://www.databass.dev"
+              href="https://www.amazon.com/Math-Primer-Graphics-Game-Development/dp/1568817231"
               rel="noopener noreferrer"
               target="_blank"
             >
-              Database Internals
+              3D Math Primer for Graphics and Game Development 
             </a>{" "}
-            to learn more about database architecture.
+            to learn more about Math for Computer Graphics.
           </p>
           <p className="text-left text-xl text-blueGray-800 mb-3">
             You can also find me on{" "}
