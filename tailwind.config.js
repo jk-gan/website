@@ -1,22 +1,25 @@
-const defaultTheme = require("tailwindcss/defaultTheme")
-const colors = require("tailwindcss/colors")
+const defaultTheme = require("tailwindcss/defaultTheme");
+const colors = require("tailwindcss/colors");
 
 module.exports = {
-  purge: ["./src/**/*.{js,jsx,ts,tsx}"],
+  content: [
+    "./pages/**/*.{js,ts,jsx,tsx}",
+    "./components/**/*.{js,ts,jsx,tsx}",
+  ],
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
       colors: {
         cyan: colors.cyan,
-        blueGray: colors.blueGray,
+        blueGray: colors.stale,
       },
-      borderColor: theme => ({
-        cyan: theme(colors.cyan),
+      borderColor: (theme) => ({
+        cyan: theme("colors.cyan"),
       }),
       fontFamily: {
         serif: ["Merriweather", ...defaultTheme.fontFamily.serif],
       },
-      typography: theme => ({
+      typography: (theme) => ({
         DEFAULT: {
           css: {
             fontSize: "1.875rem",
@@ -30,7 +33,7 @@ module.exports = {
             code: {
               backgroundColor: theme("colors.blueGray.100"),
               color: theme("colors.cyan.700"),
-              fontWeight: "400",
+              fontWeight: "200",
               "border-radius": "0.25rem",
             },
             "code::before": {
@@ -51,5 +54,8 @@ module.exports = {
   variants: {
     extend: {},
   },
-  plugins: [require("@tailwindcss/typography")],
-}
+  plugins: [
+    require("@tailwindcss/typography"),
+    require("@tailwindcss/aspect-ratio"),
+  ],
+};
