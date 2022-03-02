@@ -1,29 +1,29 @@
-import Head from "next/head";
-import Image from "next/image";
-import Link from "next/link";
-import dayjs from "dayjs";
-import ReactMarkdown from "react-markdown";
-import gfm from "remark-gfm";
-import { PrismLight as SyntaxHighlighter } from "react-syntax-highlighter";
-import js from "react-syntax-highlighter/dist/cjs/languages/prism/javascript";
-import jsx from "react-syntax-highlighter/dist/cjs/languages/prism/jsx";
-import rust from "react-syntax-highlighter/dist/cjs/languages/prism/rust";
-import markdown from "react-syntax-highlighter/dist/cjs/languages/prism/markdown";
-import diff from "react-syntax-highlighter/dist/cjs/languages/prism/diff";
-import elixir from "react-syntax-highlighter/dist/cjs/languages/prism/elixir";
-import bash from "react-syntax-highlighter/dist/cjs/languages/prism/bash";
-import tomorrow from "react-syntax-highlighter/dist/cjs/styles/prism/tomorrow";
+import Head from "next/head"
+import Image from "next/image"
+import Link from "next/link"
+import dayjs from "dayjs"
+import ReactMarkdown from "react-markdown"
+import gfm from "remark-gfm"
+import { PrismLight as SyntaxHighlighter } from "react-syntax-highlighter"
+import js from "react-syntax-highlighter/dist/cjs/languages/prism/javascript"
+import jsx from "react-syntax-highlighter/dist/cjs/languages/prism/jsx"
+import rust from "react-syntax-highlighter/dist/cjs/languages/prism/rust"
+import markdown from "react-syntax-highlighter/dist/cjs/languages/prism/markdown"
+import diff from "react-syntax-highlighter/dist/cjs/languages/prism/diff"
+import elixir from "react-syntax-highlighter/dist/cjs/languages/prism/elixir"
+import bash from "react-syntax-highlighter/dist/cjs/languages/prism/bash"
+import tomorrow from "react-syntax-highlighter/dist/cjs/styles/prism/tomorrow"
 
-SyntaxHighlighter.registerLanguage("js", js);
-SyntaxHighlighter.registerLanguage("jsx", jsx);
-SyntaxHighlighter.registerLanguage("rust", rust);
-SyntaxHighlighter.registerLanguage("bash", bash);
-SyntaxHighlighter.registerLanguage("markdown", markdown);
-SyntaxHighlighter.registerLanguage("diff", diff);
-SyntaxHighlighter.registerLanguage("elixir", elixir);
+SyntaxHighlighter.registerLanguage("js", js)
+SyntaxHighlighter.registerLanguage("jsx", jsx)
+SyntaxHighlighter.registerLanguage("rust", rust)
+SyntaxHighlighter.registerLanguage("bash", bash)
+SyntaxHighlighter.registerLanguage("markdown", markdown)
+SyntaxHighlighter.registerLanguage("diff", diff)
+SyntaxHighlighter.registerLanguage("elixir", elixir)
 
 const components = {
-  img: (image) => {
+  img: image => {
     return (
       <div className="relative aspect-w-16 aspect-h-9">
         <Image
@@ -35,17 +35,17 @@ const components = {
           quality={80}
         />
       </div>
-    );
+    )
   },
   code: ({ inline, className, children, ...props }) => {
-    const match = /language-(\w+)/.exec(className || "");
+    const match = /language-(\w+)/.exec(className || "")
     return !inline && match ? (
       <SyntaxHighlighter
         style={tomorrow}
         language={match[1]}
         codeTagProps={{
           style: {
-            fontFamily: "Fira Code",
+            fontFamily: "Fira Code, Menlo, Monaco",
             fontSize: "18px",
             lineHeight: "1.7",
           },
@@ -58,12 +58,12 @@ const components = {
       <code className={className} {...props}>
         {children}
       </code>
-    );
+    )
   },
-};
+}
 
 export default function BlogPostPage(props) {
-  const domain = "https://jkgan.com";
+  const domain = "https://jkgan.com"
   const {
     title,
     slug,
@@ -72,12 +72,12 @@ export default function BlogPostPage(props) {
     content,
     subtitle,
     image = `${domain}/bg.jpeg`,
-  } = props.post;
-  const url = `${domain}/blog/${slug}`;
+  } = props.post
+  const url = `${domain}/blog/${slug}`
   const imageURL =
     image.includes("http") || image.includes("https")
       ? image
-      : `${domain}/${image}`;
+      : `${domain}/${image}`
 
   return (
     <>
@@ -101,7 +101,7 @@ export default function BlogPostPage(props) {
             </h1>
             {/* <h3 className="opacity-80 text-xl text-blueGray-500 font-normal mb-3 text-center">{subtitle}</h3> */}
             <ul className="flex flex-wrap justify-center">
-              {tags.map((tag) => {
+              {tags.map(tag => {
                 return (
                   <li key={tag} className="mb-5">
                     <Link href={`/tags/${tag}`}>
@@ -110,7 +110,7 @@ export default function BlogPostPage(props) {
                       </a>
                     </Link>
                   </li>
-                );
+                )
               })}
             </ul>
             <p className="opacity-80 text-md text-slate-400 text-center">
@@ -128,19 +128,19 @@ export default function BlogPostPage(props) {
         </div>
       </div>
     </>
-  );
+  )
 }
 
 export async function getStaticProps(context) {
-  const { promises: fs } = require("fs");
-  const matter = require("gray-matter");
+  const { promises: fs } = require("fs")
+  const matter = require("gray-matter")
 
-  const slug = context.params.slug;
-  const path = `${process.cwd()}/posts/${slug}.md`;
+  const slug = context.params.slug
+  const path = `${process.cwd()}/posts/${slug}.md`
 
-  const rawContent = await fs.readFile(path, "utf8");
+  const rawContent = await fs.readFile(path, "utf8")
 
-  const { data, content } = matter(rawContent);
+  const { data, content } = matter(rawContent)
 
   return {
     props: {
@@ -149,26 +149,26 @@ export async function getStaticProps(context) {
         content,
       },
     },
-  };
+  }
 }
 
 export async function getStaticPaths(context) {
-  const { promises: fs } = require("fs");
-  const path = `${process.cwd()}/posts`;
-  const files = await fs.readdir(path);
+  const { promises: fs } = require("fs")
+  const path = `${process.cwd()}/posts`
+  const files = await fs.readdir(path)
 
   const markdownFileNames = files
-    .filter((fn) => fn.endsWith(".md"))
-    .map((fn) => fn.replace(".md", ""));
+    .filter(fn => fn.endsWith(".md"))
+    .map(fn => fn.replace(".md", ""))
 
   return {
-    paths: markdownFileNames.map((fileName) => {
+    paths: markdownFileNames.map(fileName => {
       return {
         params: {
           slug: fileName,
         },
-      };
+      }
     }),
     fallback: false,
-  };
+  }
 }
