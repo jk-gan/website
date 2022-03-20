@@ -1,10 +1,10 @@
-import Head from "next/head";
+import Head from "next/head"
 
 export default function Home() {
-  const url = "https://jkgan.com";
-  const title = "Gan Jun Kai";
+  const url = "https://jkgan.com"
+  const title = "Gan Jun Kai"
   const description =
-    "Jun Kai writes about software engineering and programming";
+    "Jun Kai writes about software engineering and programming"
 
   return (
     <>
@@ -42,13 +42,13 @@ export default function Home() {
             reading `}
             <a
               className="link"
-              href="https://www.amazon.com/Math-Primer-Graphics-Game-Development/dp/1568817231"
+              href="https://www.amazon.com/Foundations-Game-Engine-Development-Rendering/dp/0985811757/"
               rel="noopener noreferrer"
               target="_blank"
             >
-              3D Math Primer for Graphics and Game Development
+              Foundations of Game Engine Development, Volume 2: Rendering
             </a>{" "}
-            to learn more about Math for Computer Graphics.
+            to learn more about Game Engine Development.
           </p>
           <p className="text-left text-xl text-blueGray-800 mb-3">
             You can also find me on{" "}
@@ -83,5 +83,5 @@ export default function Home() {
         </div>
       </div>
     </>
-  );
+  )
 }
