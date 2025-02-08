@@ -1,4 +1,5 @@
 import Head from "next/head"
+import Link from 'next/link';
 
 export default function Home() {
   const url = "https://jkgan.com"
@@ -80,6 +81,9 @@ export default function Home() {
             </a>
             .
           </p>
+          <Link href="/login">
+            <a>Login</a>
+          </Link>
         </div>
       </div>
     </>
